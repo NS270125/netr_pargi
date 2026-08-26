@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Happy Raksha Bandhan ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================================
+         PHOTO MUSIC
+    ================================================== -->
+
+    <audio id="bgMusic" loop>
+        <source src="photos-song.mp3" type="audio/mpeg">
+    </audio>
+
+
+
+    <!-- =================================================
+         PHOTO PAGE
+    ================================================== -->
+
+    <div class="page" id="photoPage">
+
+
+        <!-- HEADING -->
+
+        <div class="heading">
+
+            <h1>
+                Happy Raksha Bandhan <span>❤️</span>
+            </h1>
+
+            <p>
+                To My Dear Sister 🫶🏻
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PHOTO CARD
+        ================================================== -->
+
+        <div class="photo-card">
+
+
+            <!-- LEFT HEART -->
+
+            <div class="left-heart">
+                ❤️
+            </div>
+
+
+            <!-- RIGHT FRUIT -->
+
+            <div class="right-fruit">
+                🍓
+            </div>
+
+
+            <!-- BOTTOM SPARKLE -->
+
+            <div class="bottom-sparkle">
+                ✨
+            </div>
+
+
+
+            <!-- CENTER PHOTO -->
+
+            <div class="photo">
+
+                <img
+                    id="memoryPhoto"
+                    src="photos/p1.jpg"
+                    alt="My Dear Sister"
+                >
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             BOTTOM EMOJIS
+        ================================================== -->
+
+        <div class="emojis">
+            🌸 🦋 ✨
+        </div>
+
+
+
+        <!-- =================================================
+             PHOTO DOTS
+        ================================================== -->
+
+        <div class="dots">
+
+            <span class="active"></span>
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         CINEMATIC ENDING
+    ================================================== -->
+
+    <div
+        class="cinematic-end"
+        id="cinematicEnd"
+    >
+
+        <div class="end-content">
+
+
+            <div class="end-small">
+                A LITTLE SOMETHING FROM THE HEART
+            </div>
+
+
+            <h1>
+                Thank You ❤️
+            </h1>
+
+
+            <p>
+                For being a beautiful part<br>
+                of my life. 🫶🏻
+            </p>
+
+
+            <div class="end-line"></div>
+
+
+            <div class="the-end">
+                THE END
+            </div>
+
+
+            <div class="end-heart">
+                ❤️
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script>
+
+
+        // =================================================
+        // ALL PHOTOS
+        // =================================================
+
+        const photos = [
+
+            "photos/p1.jpg",
+
+            "photos/p2.jpg",
+
+            "photos/p3.jpg",
+
+            "photos/p4.jpg",
+
+            "photos/p5.jpg",
+
+            "photos/p6.jpg"
+
+        ];
+
+
+
+        // =================================================
+        // VARIABLES
+        // =================================================
+
+        let currentPhoto = 0;
+
+        let photoTimer = null;
+
+        let endingStarted = false;
+
+
+        const photo =
+            document.getElementById("memoryPhoto");
+
+
+        const dots =
+            document.querySelectorAll(".dots span");
+
+
+        const music =
+            document.getElementById("bgMusic");
+
+
+        const photoPage =
+            document.getElementById("photoPage");
+
+
+        const cinematicEnd =
+            document.getElementById("cinematicEnd");
+
+
+
+        // =================================================
+        // MUSIC
+        // =================================================
+
+        music.volume = 0.7;
+
+
+
+        function startMusic() {
+
+            music.play().catch(() => {
+
+                console.log(
+                    "Music playback was blocked."
+                );
+
+            });
+
+        }
+
+
+        document.addEventListener(
+            "click",
+            startMusic,
+            { once: true }
+        );
+
+
+        document.addEventListener(
+            "touchstart",
+            startMusic,
+            { once: true }
+        );
+
+
+
+        // =================================================
+        // UPDATE DOTS
+        // =================================================
+
+        function updateDots() {
+
+            dots.forEach((dot) => {
+
+                dot.classList.remove("active");
+
+            });
+
+
+            if (dots[currentPhoto]) {
+
+                dots[currentPhoto]
+                    .classList.add("active");
+
+            }
+
+        }
+
+
+
+        // =================================================
+        // CHANGE PHOTO
+        // =================================================
+
+        function changePhoto() {
+
+
+            // Fade out
+
+            photo.style.opacity = "0";
+
+
+            setTimeout(() => {
+
+
+                // Move to next photo
+
+                currentPhoto++;
+
+
+                // Safety check
+
+                if (
+                    currentPhoto >= photos.length
+                ) {
+
+                    currentPhoto =
+                        photos.length - 1;
+
+                }
+
+
+
+                // Change image
+
+                photo.src =
+                    photos[currentPhoto];
+
+
+
+                // Update dots
+
+                updateDots();
+
+
+
+                // Fade in after image loads
+
+                photo.onload = () => {
+
+                    photo.style.opacity = "1";
+
+                };
+
+
+            }, 350);
+
+        }
+
+
+
+        // =================================================
+        // START PHOTO SLIDESHOW
+        // 5 SECONDS
+        // =================================================
+
+        photoTimer = setInterval(() => {
+
+
+            // If p6 is currently showing
+
+            if (
+                currentPhoto ===
+                photos.length - 1
+            ) {
+
+
+                // Stop slideshow
+
+                clearInterval(photoTimer);
+
+
+                photoTimer = null;
+
+
+
+                // Wait 3 seconds after p6
+
+                setTimeout(() => {
+
+                    showCinematicEnding();
+
+                }, 3000);
+
+
+                return;
+
+            }
+
+
+
+            // Change to next photo
+
+            changePhoto();
+
+
+        }, 9000);
+
+
+
+        // =================================================
+        // CINEMATIC ENDING
+        // =================================================
+
+        function showCinematicEnding() {
+
+
+            if (endingStarted) {
+                return;
+            }
+
+
+            endingStarted = true;
+
+
+
+            // Fade photo page
+
+            if (photoPage) {
+
+                photoPage.style.transition =
+                    "opacity 2s ease";
+
+                photoPage.style.opacity =
+                    "0";
+
+            }
+
+
+
+            // Small delay before ending
+
+            setTimeout(() => {
+
+
+                if (cinematicEnd) {
+
+                    cinematicEnd
+                        .classList
+                        .add("show");
+
+                }
+
+
+            }, 1200);
+
+
+
+            // Fade music slowly
+
+            fadeOutMusic();
+
+        }
+
+
+
+        // =================================================
+        // MUSIC FADE OUT
+        // =================================================
+
+        function fadeOutMusic() {
+
+
+            let volume =
+                music.volume;
+
+
+            const fade =
+                setInterval(() => {
+
+
+                    volume -= 0.04;
+
+
+                    if (volume <= 0) {
+
+                        volume = 0;
+
+                        music.volume = 0;
+
+                        music.pause();
+
+                        clearInterval(fade);
+
+                        return;
+
+                    }
+
+
+                    music.volume =
+                        volume;
+
+
+                }, 150);
+
+        }
+
+
+
+        // =================================================
+        // DOT CLICK
+        // =================================================
+
+        dots.forEach(
+            (dot, index) => {
+
+
+                dot.addEventListener(
+                    "click",
+                    () => {
+
+
+                        // Don't allow
+                        // changing after ending
+
+                        if (endingStarted) {
+                            return;
+                        }
+
+
+
+                        // Start music
+
+                        startMusic();
+
+
+
+                        // Same photo
+
+                        if (
+                            index ===
+                            currentPhoto
+                        ) {
+
+                            return;
+
+                        }
+
+
+
+                        // Stop current timer
+
+                        clearInterval(
+                            photoTimer
+                        );
+
+
+
+                        // Change photo
+
+                        photo.style.opacity =
+                            "0";
+
+
+                        setTimeout(() => {
+
+
+                            currentPhoto =
+                                index;
+
+
+                            photo.src =
+                                photos[
+                                    currentPhoto
+                                ];
+
+
+
+                            updateDots();
+
+
+
+                            photo.onload =
+                                () => {
+
+                                    photo.style.opacity =
+                                        "1";
+
+                                };
+
+
+
+                            // Restart timer
+
+                            photoTimer =
+                                setInterval(() => {
+
+
+                                    if (
+                                        currentPhoto ===
+                                        photos.length - 1
+                                    ) {
+
+
+                                        clearInterval(
+                                            photoTimer
+                                        );
+
+
+                                        photoTimer =
+                                            null;
+
+
+                                        setTimeout(
+                                            showCinematicEnding,
+                                            3000
+                                        );
+
+
+                                        return;
+
+                                    }
+
+
+                                    changePhoto();
+
+
+                                }, 5000);
+
+
+                        }, 350);
+
+
+                    }
+                );
+
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>One More Surprise ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="next-page" id="nextPage">
+
+        <div class="next-content">
+
+            <div class="next-small">
+                WAIT... 👀
+            </div>
+
+            <h1>
+                One More Thing ❤️
+            </h1>
+
+            <p>
+                I have something else<br>
+                I want to show you...
+            </p>
+
+            <button
+                type="button"
+                onclick="showNextSurprise()"
+            >
+                Show Me ✨
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // ============================================
+        // SHOW NEXT SURPRISE
+        // ============================================
+
+        function showNextSurprise() {
+
+            const page =
+                document.getElementById("nextPage");
+
+            if (!page) return;
+
+
+            // Fade out
+
+            page.style.transition =
+                "opacity 1s ease";
+
+            page.style.opacity = "0";
+
+
+            setTimeout(() => {
+
+                // ====================================
+                // SECOND / LAST PAGE
+                // ====================================
+
+                page.innerHTML = `
+
+                    <div class="next-content">
+
+                        <div class="next-small">
+                            FOR MY SISTER ❤️
+                        </div>
+
+                        <h1>
+                            You're Truly Special ✨
+                        </h1>
+
+                        <p>
+                            Some bonds don't need<br>
+                            to be explained...
+                            <br><br>
+                            They just need to be felt. 🫶🏻
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                // Fade in
+
+                page.style.opacity = "1";
+
+
+                // ====================================
+                // AFTER 3 SECONDS
+                // OPEN PHOTOS PAGE
+                // ====================================
+
+                setTimeout(() => {
+
+                    page.style.transition =
+                        "opacity 1s ease";
+
+                    page.style.opacity = "0";
+
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "photos.html";
+
+                    }, 1000);
+
+                }, 3000);
+
+
+            }, 1000);
+
+        }
+
+    </script>
+
+</body>
+
+</html>
